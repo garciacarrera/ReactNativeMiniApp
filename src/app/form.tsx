@@ -17,6 +17,11 @@ export default function FormScreen() {
         form.reset();
     }
 
+    async function cleanInput() {
+        if (!form.isValid) return;
+        form.reset();
+    }
+
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Formulario controlado</Text>
@@ -41,6 +46,12 @@ export default function FormScreen() {
                 onPress={handleSubmit}
             >
                 <Text style={styles.buttonText}>Guardar</Text>
+            </Pressable>
+            <Pressable
+                style={[styles.button_clean, !form.isValid && styles.buttonDisabled]}
+                onPress={cleanInput}
+            >
+                <Text style={styles.buttonText}>Limpiar</Text>
             </Pressable>
         </View>
     );
@@ -89,5 +100,11 @@ const styles = StyleSheet.create({
         color: 'white',
         textAlign: 'center',
         fontWeight: '700',
+    },
+    button_clean: {
+        backgroundColor: theme.colors.muted,
+        paddingVertical: 14,
+        borderRadius: 12,
+        marginTop: 8,
     },
 });
