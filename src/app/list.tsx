@@ -25,7 +25,13 @@ export default function ListScreen() {
       <FlatList
         data={items}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <ItemCard item={item} />}
+        renderItem={({ item }) => (
+          <ItemCard
+            title={item.title}
+            description={item.description}
+            priority={item.priority}
+          />
+        )}
       />
     </View>
   );
