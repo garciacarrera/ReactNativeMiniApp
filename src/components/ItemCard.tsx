@@ -1,15 +1,25 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
 import { Item } from "../types/item";
 import { theme } from "../constants/theme";
+
 type Props = {
-  item: Item;
+  title: string;
+  description: string;
+  priority?: "baja" | "media" | "alta";
+  onPress?: () => void;
 };
-export function ItemCard({ item }: Props) {
+export function ItemCard({
+  title,
+  description,
+  priority = "media",
+  onPress,
+}: Props) {
   return (
-    <View style={styles.card}>
-      <Text style={styles.title}>{item.title}</Text>
-      <Text style={styles.description}>{item.description}</Text>
-    </View>
+    <Pressable onPress={onPress} style={styles.card}>
+      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.description}>{description}</Text>
+      <Text style={styles.priority}>Prioridad: {priority}</Text>
+    </Pressable>
   );
 }
 const styles = StyleSheet.create({
@@ -30,5 +40,10 @@ const styles = StyleSheet.create({
   description: {
     color: theme.colors.muted,
     lineHeight: 20,
+  },
+  priority: {
+    marginTop: theme.spacing.sm,
+    color: theme.colors.primary,
+    fontWeight: "700",
   },
 });
