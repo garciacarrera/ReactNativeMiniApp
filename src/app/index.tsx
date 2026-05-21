@@ -1,5 +1,5 @@
-import { View, Text, Pressable, StyleSheet } from "react-native";
 import { Link } from "expo-router";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { theme } from "../constants/theme";
 export default function HomeScreen() {
   return (
@@ -14,7 +14,9 @@ export default function HomeScreen() {
         </Pressable>
       </Link>
       <Link href="/form" asChild>
-        <Pressable style={[styles.button, styles.secondaryButton]}>
+        <Pressable
+          style={StyleSheet.flatten([styles.button, styles.secondaryButton])}
+        >
           <Text style={styles.secondaryButtonText}>Ir al formulario</Text>
         </Pressable>
       </Link>
